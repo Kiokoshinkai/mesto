@@ -1,4 +1,113 @@
-.header {
+.page {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  color: #fff;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  min-width: 1280px;
+  background-color: #000;
 }
-.main {
+
+.header {
+  max-width: 880px;
+}
+
+.page__header {
+  margin: 45px auto 40px;
+}
+
+.logo {
+  background-image: url(./images/logo.svg);
+  width: 142px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.header__line {
+  border: 1px solid #545454;
+  opacity: 0.7;
+  margin: 41px 0 0;
+}
+
+.content {
+  max-width: 880px;
+}
+
+.page__content {
+  margin: 40px auto 66px;
+}
+
+.profile {
+
+}
+
+.profile__avatar {
+  background-image: url(./images/avatar.jpg);
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.profile__info {
+}
+.profile__name {
+}
+.profile__status {
+}
+.edit-button {
+}
+.edit-button__icon {
+}
+.add-button {
+}
+.add-button__icon {
+}
+.popup {
+  display: none;
+}
+
+.popup_opened {
+
+}
+
+.popup__container {
+}
+.popup__close-btn {
+}
+.form {
+}
+.form__container {
+}
+.form__title {
+}
+.form__input-container {
+}
+.form__item {
+}
+.form__button {
+}
+.elements {
+}
+.card {
+}
+.card__image {
+}
+.card__wrap {
+}
+.card__title {
+}
+.card__like {
+}
+.footer {
+}
+.footer__copyright {
 }
