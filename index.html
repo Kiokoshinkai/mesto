@@ -18,11 +18,11 @@
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__status">Исследователь океана</p>
-        <a href="#" class="edit-button">
+        <a href="#" class="edit-button buttons">
           <div class="edit-button__icon"></div>
         </a>
       </div>
-      <a href="#" class="add-button">
+      <a href="#" class="add-button buttons">
         <div class="add-button__icon"></div>
       </a>
     </section>
@@ -73,21 +73,20 @@
   </main>
   <section class="popup popup_opened">
     <div class="popup__container">
-      <a href="#" class="popup__close-btn"></a>
-      <form action="" class="form">
-        <div class="form__container">
-          <h2 class="form__title"></h2>
-          <fieldset class="form__input-container">
-            <input type="text" id="" name="" placeholder="" required class="form__item">
-            <input type="text" id="" name="" placeholder="" required class="form__item">
-            <input type="submit" name="submit" value="Сохранить" class="form__button">
-          </fieldset>
-        </div>
+      <a href="#" class="popup__close-btn buttons"></a>
+      <form action="" class="popup__form">
+        <fieldset class="popup__form-container">
+          <h2 class="popup__form-title">Редактировать профиль</h2>
+          <input type="text" id="" name="" placeholder="" required class="popup__form-item popup__form-item_el_name popup__form-input">
+          <input type="text" id="" name="" placeholder="" required class="popup__form-item popup__form-item_el_status popup__form-input">
+          <input type="submit" name="submit" value="Сохранить" class="popup__form-item popup__form-button">
+        </fieldset>
       </form>
     </div>
   </section>
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2023. Mesto Russia</p>
   </footer>
+  <script src="./script.js"></script>
 </body>
 </html>
