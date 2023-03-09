@@ -1,0 +1,13 @@
+.add-button {
+  display: block;
+  width: 150px;
+  height: 50px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 2px;
+}
+@media screen and (max-width: 790px) {
+    .add-button {
+        width: 282px;
+      }
+}

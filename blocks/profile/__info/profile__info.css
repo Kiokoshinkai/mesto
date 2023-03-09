@@ -1,0 +1,15 @@
+.profile__info {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    "title edit-btn"
+    "status status" ;
+  margin: 0 auto 0 30px;
+  max-width: calc(880px - 120px - 150px - 30px - 10px);
+}
+@media screen and (max-width: 790px) {
+    .profile__info {
+        margin: 0;
+      }
+}
