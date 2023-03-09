@@ -4,7 +4,7 @@
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
     "title edit-btn"
-    "status status" ;
+    "status status";
   margin: 0 auto 0 30px;
   max-width: calc(880px - 120px - 150px - 30px - 10px);
 }
