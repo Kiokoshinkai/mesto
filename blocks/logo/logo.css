@@ -1,10 +1,8 @@
 .logo {
-  background-image: url(../../images/logo.svg);
-  width: 142px;
-  height: 33px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  max-width: 142px;
+  width: 100%;
+  max-height: 33px;
+  object-fit: cover;
 }
 @media screen and (max-width: 790px) {
     .logo {
@@ -13,7 +11,8 @@
 }
 @media screen and (max-width: 530px) {
     .logo {
-        width: 103px;
-        height: 24px;
+        max-width: 103px;
+        width: 100%;
+        max-height: 24px;
       }
 }

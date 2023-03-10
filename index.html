@@ -9,22 +9,17 @@
 </head>
 <body class="page">
   <header class="header page__header">
-    <div class="logo"></div>
-    <hr class="header__line">
+    <img src="./images/logo.svg" alt="Логотип Место Россия" class="logo">
   </header>
   <main class="content page__content">
     <section class="profile">
-      <div class="profile__avatar"></div>
+      <img src="./images/avatar.jpg" alt="фото пользователя" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__status">Исследователь океана</p>
-        <a href="#" class="edit-button buttons">
-          <div class="edit-button__icon"></div>
-        </a>
+        <button aria-label="редактировать профиль" type="button" class="profile__edit-button button"></button>
       </div>
-      <a href="#" class="add-button buttons">
-        <div class="add-button__icon"></div>
-      </a>
+      <button aria-label="добавить место" type="button" class="profile__add-button button"></button>
     </section>
     <section aria-label="Фото и названия мест куда можно поехать" class="elements content__elements">
       <article class="card">
@@ -35,28 +30,28 @@
         </div>
       </article>
       <article class="card">
-        <img src="./images/element_elbrus.png" alt="вид на гору Эльбрус издалека" class="card__image">
+        <img src="./images/element_elbrus.jpg" alt="вид на гору Эльбрус издалека" class="card__image">
         <div class="card__form">
           <h2 class="card__title">Гора Эльбрус</h2>
           <button name="like" class="card__like"></button>
         </div>
       </article>
       <article class="card">
-        <img src="./images/element_dombai.png" alt="осенний лес, на фоне гора, Домбай" class="card__image">
+        <img src="./images/element_dombai.jpg" alt="осенний лес, на фоне гора, Домбай" class="card__image">
         <div class="card__form">
           <h2 class="card__title">Домбай</h2>
           <button name="like" class="card__like"></button>
         </div>
       </article>
       <article class="card">
-        <img src="./images/element_elbrus.png" alt="вид на гору Эльбрус издалека" class="card__image">
+        <img src="./images/element_elbrus.jpg" alt="вид на гору Эльбрус издалека" class="card__image">
         <div class="card__form">
           <h2 class="card__title">Гора Эльбрус</h2>
           <button name="like" class="card__like"></button>
         </div>
       </article>
       <article class="card">
-        <img src="./images/element_dombai.png" alt="осенний лес, на фоне гора, Домбай" class="card__image">
+        <img src="./images/element_dombai.jpg" alt="осенний лес, на фоне гора, Домбай" class="card__image">
         <div class="card__form">
           <h2 class="card__title">Домбай</h2>
           <button name="like" class="card__like"></button>
@@ -71,22 +66,22 @@
       </article>
     </section>
   </main>
-  <section class="popup">
-    <div class="popup__container">
-      <a href="#" class="popup__close-btn buttons"></a>
-      <form class="popup__form">
-        <fieldset class="popup__form-container">
-          <h2 class="popup__form-title">Редактировать профиль</h2>
-          <input type="text" required class="popup__form-item popup__form-item_el_name popup__form-input">
-          <input type="text" required class="popup__form-item popup__form-item_el_status popup__form-input">
-          <input type="submit" name="submit" value="Сохранить" class="popup__form-item popup__form-button">
-        </fieldset>
-      </form>
-    </div>
-  </section>
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2023. Mesto Russia</p>
   </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn button"></button>
+      <form name="edit-profile" class="popup__form">
+        <fieldset class="popup__form-container">
+          <h2 class="popup__form-title">Редактировать профиль</h2>
+          <input name="name" type="text" required class="popup__form-item popup__form-item_el_name">
+          <input name="status" type="text" required class="popup__form-item popup__form-item_el_status">
+          <button aria-label="сохранить изменения профиля" type="submit" class="popup__save-button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
   <script src="./script.js"></script>
 </body>
 </html>
