@@ -8,6 +8,11 @@
   margin: 0 auto 0 30px;
   max-width: calc(880px - 120px - 150px - 30px - 10px);
 }
+@media screen and (max-width: 1050px) {
+  .profile__info {
+      max-width: calc(752px - 120px - 150px - 30px - 10px);
+    }
+}
 @media screen and (max-width: 790px) {
     .profile__info {
         margin: 0;

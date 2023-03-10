@@ -9,7 +9,7 @@ const profileStatus = profileElement.querySelector('.profile__status');
 const editButton = profileElement.querySelector('.edit-button');
 const addButton = profileElement.querySelector('.add-button');
 const closeButton = popupElement.querySelector('.popup__close-btn');
-const likeButtons = elementItem.querySelectorAll('.card__like');
+
 
 const formName = popupElement.querySelector('.popup__form-item_el_name');
 const formStatus = popupElement.querySelector('.popup__form-item_el_status');
@@ -51,16 +51,17 @@ function handleFormSubmit (evt) {
 popupElement.addEventListener('submit', handleFormSubmit);
 
 // обработчик черных сердец. На вход querySelectorAll приходит массив, циклом достаем элементы массива и добавляем каждому через лисинер логику(если класс отсутствует, он добавляется)
+const likeButtons = elementItem.querySelectorAll('.card__like');
+
 for (let i = 0; i < likeButtons.length; i += 1) {
-  likeButtons[i].addEventListener('click', function() {
-    if (likeButtons[i].classList.contains('card__like_active') === false) {
-      likeButtons[i].classList.add('card__like_active');
-    } else {
-      likeButtons[i].classList.remove('card__like_active');
-    }
-  });
+  likeButtons[i].addEventListener('click', addLike);
 }
 
-
-
+function addLike() {
+  if (this.classList.contains('card__like_active') === false) {
+    this.classList.add('card__like_active');
+  } else {
+    this.classList.remove('card__like_active');
+  }
+}
 
