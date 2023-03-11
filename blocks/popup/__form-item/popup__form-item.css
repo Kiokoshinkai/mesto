@@ -1,13 +1,10 @@
 .popup__form-item {
-  padding: 0;
+  padding: 0 0 13px 0;
   border: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-style: normal;
   max-width: 358px;
   width: 100%;
-  height: 27px;
   margin-top: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
@@ -36,6 +33,5 @@
 @media screen and (max-width: 530px) {
   .popup__form-item {
     max-width: 238px;
-    margin-top: 43px;
     }
 }
