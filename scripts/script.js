@@ -12,20 +12,16 @@ const closeButton = popupElement.querySelector('.popup__close-btn');
 const formName = popupElement.querySelector('.popup__form-item_el_name');
 const formStatus = popupElement.querySelector('.popup__form-item_el_status');
 
-// Функция вызова редактора профиля (если класс отсутствует, он добавляется)
+// Функция вызова редактора профиля
 function editProfile() {
-  if (popupElement.classList.contains('popup_opened') === false) {
     popupElement.classList.add('popup_opened');
-  }
   //данные забираются в момент открытия редактора профиля через функцию:
   getNameAndStatusForForm();
 }
 
-// Функция закрытия редактора профиля (если класс есть, он удаляется)
+// Функция закрытия редактора профиля
 function closeProfile() {
-  if (popupElement.classList.contains('popup_opened') === true) {
     popupElement.classList.remove('popup_opened');
-  }
 }
 
 // Функция сохранения данных профиля в полях формы
