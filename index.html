@@ -22,48 +22,15 @@
       <button aria-label="добавить место" type="button" class="profile__add-button button"></button>
     </section>
     <section aria-label="Фото и названия мест куда можно поехать" class="elements content__elements">
-      <article class="card">
-        <img src="./images/element_karachaevsk.jpg" alt="разрушенный монастырь в Карачаевске, на фоне гора" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Карачаевск</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/element_elbrus.jpg" alt="вид на гору Эльбрус издалека" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/element_dombai.jpg" alt="осенний лес, на фоне гора, Домбай" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Домбай</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/element_elbrus.jpg" alt="вид на гору Эльбрус издалека" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/element_dombai.jpg" alt="осенний лес, на фоне гора, Домбай" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Домбай</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/element_karachaevsk.jpg" alt="разрушенный монастырь в Карачаевске, на фоне гора" class="card__image">
-        <div class="card__form">
-          <h2 class="card__title">Карачаево-Черкесская Республика</h2>
-          <button name="like" type="button" class="card__like"></button>
-        </div>
-      </article>
+      <template id="card">
+        <article class="card">
+          <img src="" alt="" class="card__image">
+          <div class="card__form">
+            <h2 class="card__title"></h2>
+            <button name="like" type="button" class="card__like"></button>
+          </div>
+        </article>
+      </template>
     </section>
   </main>
   <footer class="footer page__footer">
