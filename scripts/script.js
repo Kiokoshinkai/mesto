@@ -47,6 +47,34 @@ closeButton.addEventListener('click', closeProfile);
 // слушатель на форму т.к отправляем данные формы на сервер
 popupForm.addEventListener('submit', handleFormSubmit);
 
+//массив для карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 // обработчик черных сердец. На вход querySelectorAll приходит массив, циклом достаем элементы массива и добавляем каждому через лисинер логику(если класс отсутствует, он добавляется)
 // const likeButtons = elementItem.querySelectorAll('.card__like');
 
