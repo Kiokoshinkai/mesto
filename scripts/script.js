@@ -1,16 +1,19 @@
 // Получить доступ к элементам
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
-const popupElement = document.querySelector('.popup');
-const popupForm = popupElement.querySelector('.popup__form');
+const profilePopup = document.querySelector('#profile-popup');
+const cardPopup = document.querySelector('#card-popup');
+const popupProfileForm = profilePopup.querySelector('.popup__form_el_profile');
 const profileName = profileElement.querySelector('.profile__name');
 const profileStatus = profileElement.querySelector('.profile__status');
 
 const profileButton = profileElement.querySelector('.profile__edit-button');
-const closeButton = popupElement.querySelector('.popup__close-btn');
+const cardButton = profileElement.querySelector('.profile__add-button');
+const profileCloseButton = profilePopup.querySelector('.popup__close-btn_place_profile');
+const cardCloseButton = cardPopup.querySelector('.popup__close-btn_place_card');
 
-const formName = popupElement.querySelector('.popup__form-item_el_name');
-const formStatus = popupElement.querySelector('.popup__form-item_el_status');
+const formName = profilePopup.querySelector('.popup__form-item_el_name');
+const formStatus = profilePopup.querySelector('.popup__form-item_el_status');
 
 //получаем доступ к секции карточек, к темплейт элементу карточки
 const cardElements = contentElement.querySelector('.elements');
@@ -18,14 +21,24 @@ const cardTemplate = contentElement.querySelector('#card').content;
 
 // Функция вызова редактора профиля
 function editProfile() {
-    popupElement.classList.add('popup_opened');
+  profilePopup.classList.add('popup_opened');
   //данные забираются в момент открытия редактора профиля через функцию:
   getNameAndStatusForForm();
 }
 
 // Функция закрытия редактора профиля
 function closeProfile() {
-    popupElement.classList.remove('popup_opened');
+  profilePopup.classList.remove('popup_opened');
+}
+
+// Функция вызова окна добавления места
+function addPlace() {
+  cardPopup.classList.add('popup_opened');
+}
+
+// Функция закрытия окна добавления места
+function closePlace() {
+  cardPopup.classList.remove('popup_opened');
 }
 
 // Функция сохранения данных профиля в полях формы
@@ -45,11 +58,13 @@ function handleFormSubmit (evt) {
   closeProfile();
 }
 
-// Вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля)
+// Вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
 profileButton.addEventListener('click', editProfile);
-closeButton.addEventListener('click', closeProfile);
+cardButton.addEventListener('click', addPlace);
+profileCloseButton.addEventListener('click', closeProfile);
+cardCloseButton.addEventListener('click' , closePlace);
 // слушатель на форму т.к отправляем данные формы на сервер
-popupForm.addEventListener('submit', handleFormSubmit);
+popupProfileForm.addEventListener('submit', handleFormSubmit);
 
 //массив для карточек
 const initialCards = [

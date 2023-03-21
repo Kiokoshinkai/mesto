@@ -36,15 +36,28 @@
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2023. Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup" id="profile-popup">
     <div class="popup__container">
-      <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn button"></button>
-      <form name="edit-profile" class="popup__form">
+      <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn popup__close-btn_place_profile button"></button>
+      <form name="edit-profile" class="popup__form popup__form_el_profile">
         <fieldset class="popup__form-container">
           <h2 class="popup__form-title">Редактировать профиль</h2>
           <input name="name" type="text" required class="popup__form-item popup__form-item_el_name">
           <input name="status" type="text" required class="popup__form-item popup__form-item_el_status">
           <button aria-label="сохранить изменения профиля" type="submit" class="popup__save-button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="card-popup">
+    <div class="popup__container">
+      <button aria-label="закрыть редактор карточек" type="button" class="popup__close-btn popup__close-btn_place_card button"></button>
+      <form name="edit-profile" class="popup__form popup__form_el_card">
+        <fieldset class="popup__form-container">
+          <h2 class="popup__form-title">Новое место</h2>
+          <input name="place-name" type="text" placeholder="Название" required class="popup__form-item popup__form-item_el_place-name">
+          <input name="place-link" type="text" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_place-link">
+          <button aria-label="Создать новую карточку" type="submit" class="popup__save-button">Создать</button>
         </fieldset>
       </form>
     </div>
