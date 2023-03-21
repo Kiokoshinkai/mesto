@@ -1,9 +1,10 @@
 // Получить доступ к элементам
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
-const profilePopup = document.querySelector('#profile-popup');
-const cardPopup = document.querySelector('#card-popup');
+const profilePopup = document.querySelector('.popup_place_profile');
+const cardPopup = document.querySelector('.popup_place_card');
 const popupProfileForm = profilePopup.querySelector('.popup__form_el_profile');
+const popupCardForm = cardPopup.querySelector('.popup__form_el_card');
 const profileName = profileElement.querySelector('.profile__name');
 const profileStatus = profileElement.querySelector('.profile__status');
 
@@ -14,10 +15,12 @@ const cardCloseButton = cardPopup.querySelector('.popup__close-btn_place_card');
 
 const formName = profilePopup.querySelector('.popup__form-item_el_name');
 const formStatus = profilePopup.querySelector('.popup__form-item_el_status');
+const placeName = cardPopup.querySelector('.popup__form-item_el_place-name');
+const placeLink = cardPopup.querySelector('.popup__form-item_el_place-link');
 
 //получаем доступ к секции карточек, к темплейт элементу карточки
 const cardElements = contentElement.querySelector('.elements');
-const cardTemplate = contentElement.querySelector('#card').content;
+const cardTemplate = contentElement.querySelector('.card-template').content;
 
 // Функция вызова редактора профиля
 function editProfile() {
@@ -58,6 +61,20 @@ function handleFormSubmit (evt) {
   closeProfile();
 }
 
+// функция добавления карточки
+function savePlaceSubmit (evt) {
+  evt.preventDefault();
+
+  const placeValueObject = {
+    name: placeName.value,
+    link: placeLink.value
+  };
+  //вызываем функцию для клона карточки и передаем в нее параметры с полей ввода
+  addCardContent(placeValueObject);
+  // нужно вызывать для пддержания логики закрытия попапа
+  closePlace();
+}
+
 // Вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
 profileButton.addEventListener('click', editProfile);
 cardButton.addEventListener('click', addPlace);
@@ -65,6 +82,7 @@ profileCloseButton.addEventListener('click', closeProfile);
 cardCloseButton.addEventListener('click' , closePlace);
 // слушатель на форму т.к отправляем данные формы на сервер
 popupProfileForm.addEventListener('submit', handleFormSubmit);
+popupCardForm.addEventListener('submit', savePlaceSubmit);
 
 //массив для карточек
 const initialCards = [
@@ -102,6 +120,12 @@ function addCardContent(cardInfo) {
   templateClone.querySelector('.card__title').textContent = cardInfo.name;
 
   cardElements.prepend(templateClone);
+
+  //обработчик черных сердец
+  const likeButton = contentElement.querySelector('.card__like');
+  likeButton.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('card__like_active');
+  });
 }
 
 //функция перебирает все данные массива и применяет функцию выше
@@ -109,7 +133,7 @@ function addAllCardsFromArray() {
   initialCards.forEach(arrayEl => addCardContent(arrayEl));
 }
 
-//вызов функции для добавления
+//вызов функции для добавления всех карточек из массива
 addAllCardsFromArray();
 
 //Другой вариант клона карточек:
@@ -125,19 +149,3 @@ addAllCardsFromArray();
 // }
 
 // cloneCards()
-
-
-// обработчик черных сердец. На вход querySelectorAll приходит массив, циклом достаем элементы массива и добавляем каждому через лисинер логику(если класс отсутствует, он добавляется)
-// const likeButtons = elementItem.querySelectorAll('.card__like');
-
-// for (let i = 0; i < likeButtons.length; i += 1) {
-//   likeButtons[i].addEventListener('click', addLike);
-// }
-
-// function addLike() {
-//   if (this.classList.contains('card__like_active') === false) {
-//     this.classList.add('card__like_active');
-//   } else {
-//     this.classList.remove('card__like_active');
-//   }
-// }
