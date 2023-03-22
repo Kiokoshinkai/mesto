@@ -1,26 +1,25 @@
-// Получить доступ к элементам
+//получить доступ к элементам, профиль
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
+const profileName = profileElement.querySelector('.profile__name');
+const profileStatus = profileElement.querySelector('.profile__status');
+//попап
 const profilePopup = document.querySelector('.popup_place_profile');
 const cardPopup = document.querySelector('.popup_place_card');
 const imagePopup = document.querySelector('.popup_place_image');
 const popupProfileForm = profilePopup.querySelector('.popup__form_el_profile');
 const popupCardForm = cardPopup.querySelector('.popup__form_el_card');
-const profileName = profileElement.querySelector('.profile__name');
-const profileStatus = profileElement.querySelector('.profile__status');
-
+const formName = profilePopup.querySelector('.popup__form-item_el_name');
+const formStatus = profilePopup.querySelector('.popup__form-item_el_status');
+const placeName = cardPopup.querySelector('.popup__form-item_el_place-name');
+const placeLink = cardPopup.querySelector('.popup__form-item_el_place-link');
+//кнопки
 const profileButton = profileElement.querySelector('.profile__edit-button');
 const cardButton = profileElement.querySelector('.profile__add-button');
 const profileCloseButton = profilePopup.querySelector('.popup__close-btn_place_profile');
 const cardCloseButton = cardPopup.querySelector('.popup__close-btn_place_card');
 const imageCloseButton = imagePopup.querySelector('.popup__close-btn_place_image');
-
-const formName = profilePopup.querySelector('.popup__form-item_el_name');
-const formStatus = profilePopup.querySelector('.popup__form-item_el_status');
-const placeName = cardPopup.querySelector('.popup__form-item_el_place-name');
-const placeLink = cardPopup.querySelector('.popup__form-item_el_place-link');
-
-//Получаем доступ к секции карточек, к темплейт элементу карточки
+//получить доступ к секции карточек, к темплейт элементу карточки
 const cardElements = contentElement.querySelector('.elements');
 const cardTemplate = contentElement.querySelector('.card-template').content;
 
@@ -28,30 +27,25 @@ const cardTemplate = contentElement.querySelector('.card-template').content;
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
-
-//Функция закрытия попапа с аргументом для переиспользования
+//функция закрытия попапа с аргументом для переиспользования
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
-
-//Функция сохранения данных профиля в полях формы
+//функция сохранения данных профиля в полях формы
 function getNameAndStatusForForm() {
   formName.value = profileName.textContent;
   formStatus.value = profileStatus.textContent;
 }
-
-// функция перезаписывает данные профиля с полей ввода
+//функция перезаписывает данные профиля с полей ввода
 function handleFormSubmit (evt) {
   evt.preventDefault();
 
   profileName.textContent = formName.value;
   profileStatus.textContent = formStatus.value;
-
-  // нужно вызывать для пддержания логики закрытия попапа
+  //нужно вызывать для пддержания логики закрытия попапа
   closePopup(profilePopup);
 }
-
-// функция добавления карточки
+//функция добавления карточки
 function savePlaceSubmit (evt) {
   evt.preventDefault();
 
@@ -61,29 +55,9 @@ function savePlaceSubmit (evt) {
   };
   //вызываем функцию для клона карточки и передаем в нее параметры с полей ввода
   createCard(placeValueObject);
-  // нужно вызывать для пддержания логики закрытия попапа
+  //нужно вызывать для пддержания логики закрытия попапа
   closePopup(cardPopup);
 }
-
-// Вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
-profileButton.addEventListener('click', () => {
-  openPopup(profilePopup), getNameAndStatusForForm();//перенос данных профиля в форму
-});
-cardButton.addEventListener('click', () => {
-  openPopup(cardPopup);
-});
-profileCloseButton.addEventListener('click', () => {
-  closePopup(profilePopup);
-});
-cardCloseButton.addEventListener('click' , () => {
-  closePopup(cardPopup);
-});
-imageCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-// слушатель на форму т.к отправляем данные формы на сервер
-popupProfileForm.addEventListener('submit', handleFormSubmit);
-popupCardForm.addEventListener('submit', savePlaceSubmit);
 
 //массив для карточек
 const initialCards = [
@@ -144,3 +118,23 @@ function addAllCardsFromArray() {
 }
 //вызов функции для добавления всех карточек из массива
 addAllCardsFromArray();
+
+//вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
+profileButton.addEventListener('click', () => {
+  openPopup(profilePopup), getNameAndStatusForForm();//перенос данных профиля в форму
+});
+cardButton.addEventListener('click', () => {
+  openPopup(cardPopup);
+});
+profileCloseButton.addEventListener('click', () => {
+  closePopup(profilePopup);
+});
+cardCloseButton.addEventListener('click' , () => {
+  closePopup(cardPopup);
+});
+imageCloseButton.addEventListener('click', () => {
+  closePopup(imagePopup);
+});
+//слушатель на форму т.к отправляем данные формы на сервер
+popupProfileForm.addEventListener('submit', handleFormSubmit);
+popupCardForm.addEventListener('submit', savePlaceSubmit);
