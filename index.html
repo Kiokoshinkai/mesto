@@ -39,39 +39,36 @@
   </footer>
   <div class="popup popup_place_profile">
     <div class="popup__container">
-      <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn popup__close-btn_place_profile button"></button>
+      <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn button"></button>
       <form name="edit-profile" class="popup__form popup__form_el_profile">
-        <fieldset class="popup__form-container">
-          <h2 class="popup__form-title">Редактировать профиль</h2>
-          <input name="name" type="text" required class="popup__form-item popup__form-item_el_name">
-          <input name="status" type="text" required class="popup__form-item popup__form-item_el_status">
-          <button aria-label="сохранить изменения профиля" type="submit" class="popup__save-button">Сохранить</button>
-        </fieldset>
+        <h2 class="popup__form-title">Редактировать профиль</h2>
+        <input name="name" type="text" placeholder="Имя" required class="popup__form-item popup__form-item_el_name">
+        <input name="status" type="text" placeholder="О себе" required class="popup__form-item popup__form-item_el_status">
+        <button aria-label="сохранить изменения профиля" type="submit" class="popup__save-button">Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup popup_place_card">
     <div class="popup__container">
-      <button aria-label="закрыть редактор карточек" type="button" class="popup__close-btn popup__close-btn_place_card button"></button>
+      <button aria-label="закрыть редактор карточек" type="button" class="popup__close-btn button"></button>
       <form name="edit-profile" class="popup__form popup__form_el_card">
-        <fieldset class="popup__form-container">
-          <h2 class="popup__form-title">Новое место</h2>
-          <input name="place-name" type="text" placeholder="Название" required class="popup__form-item popup__form-item_el_place-name">
-          <input name="place-link" type="text" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_place-link">
-          <button aria-label="Создать новую карточку" type="submit" class="popup__save-button">Создать</button>
-        </fieldset>
+        <h2 class="popup__form-title">Новое место</h2>
+        <input name="place-name" type="text" placeholder="Название" required class="popup__form-item popup__form-item_el_place-name">
+        <input name="place-link" type="text" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_place-link">
+        <button aria-label="Создать новую карточку" type="submit" class="popup__save-button">Создать</button>
       </form>
     </div>
   </div>
   <div class="popup popup_place_image">
     <div class="popup__container">
-      <button aria-label="закрыть просмотр изображения" type="button" class="popup__close-btn popup__close-btn_place_image button"></button>
+      <button aria-label="закрыть просмотр изображения" type="button" class="popup__close-btn button"></button>
       <figure class="popup__figure-container">
         <img src="#" alt="увеличенное изображение" class="popup__image">
         <figcaption class="popup__figcaption"></figcaption>
       </figure>
     </div>
   </div>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 </html>

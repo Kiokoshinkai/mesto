@@ -3,6 +3,7 @@
   width: 100%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  cursor: pointer;
 }
 @media screen and (max-width: 1050px) {
   .card__image {
