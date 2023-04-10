@@ -4,7 +4,6 @@ const profileElement = contentElement.querySelector('.profile');
 const profileName = profileElement.querySelector('.profile__name');
 const profileStatus = profileElement.querySelector('.profile__status');
 //попап
-const popup = document.querySelector('.popup');
 const popups = document.querySelectorAll('.popup');
 const profileFormPopup = document.querySelector('.popup_place_profile');
 const placeFormPopup = document.querySelector('.popup_place_card');
@@ -34,10 +33,15 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
-//функция сохранения данных профиля в полях формы
-function getNameAndStatusForForm() {
+//функция переноса данных профиля в поля формы профиля
+function getDataForProfileForm() {
   formProfileFieldName.value = profileName.textContent;
   formProfileFieldStatus.value = profileStatus.textContent;
+}
+//функция обнуления данных формы Место
+function clearFormPlace() {
+  formPlaceFieldPlace.value = '';
+  formPlaceFieldLink.value = '';
 }
 //функция перезаписывает данные профиля с полей ввода
 function handleProfileFormSubmit (evt) {
@@ -100,10 +104,10 @@ addAllCardsFromArray();
 
 //вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
 profileButton.addEventListener('click', () => {
-  openPopup(profileFormPopup), getNameAndStatusForForm();//перенос данных профиля в форму
+  openPopup(profileFormPopup), getDataForProfileForm();//перенос данных профиля в форму
 });
 cardButton.addEventListener('click', () => {
-  openPopup(placeFormPopup);
+  openPopup(placeFormPopup), clearFormPlace();//обнуление данных при открытии
 });
 //обработчик всех кнопок закрытия
 closeButtons.forEach(button => {
@@ -113,7 +117,7 @@ closeButtons.forEach(button => {
 //обработчик закрытия по клику на оверлей всех попапов
 popups.forEach(overlay => {
   overlay.closest('.popup');
-addEventListener('click', evt => {
+  overlay.addEventListener('mousedown', evt => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(overlay);
     }

@@ -40,10 +40,12 @@
   <div class="popup popup_place_profile">
     <div class="popup__container">
       <button aria-label="закрыть редактор профиля" type="button" class="popup__close-btn button"></button>
-      <form name="edit-profile" class="popup__form popup__form_el_profile">
+      <form name="edit-profile" class="popup__form popup__form_el_profile" novalidate>
         <h2 class="popup__form-title">Редактировать профиль</h2>
-        <input name="name" type="text" placeholder="Имя" required class="popup__form-item popup__form-item_el_name">
-        <input name="status" type="text" placeholder="О себе" required class="popup__form-item popup__form-item_el_status">
+        <input id="name-input" name="name" type="text" placeholder="Имя" required class="popup__form-item popup__form-item_el_name" minlength="2" maxlength="40">
+        <span class="name-input-error popup__form-error">Вы пропустили это поле.</span>
+        <input id="status-input" name="status" type="text" placeholder="О себе" required class="popup__form-item popup__form-item_el_status" minlength="2" maxlength="200">
+        <span class="status-input-error popup__form-error">Вы пропустили это поле.</span>
         <button aria-label="сохранить изменения профиля" type="submit" class="popup__save-button">Сохранить</button>
       </form>
     </div>
@@ -51,10 +53,12 @@
   <div class="popup popup_place_card">
     <div class="popup__container">
       <button aria-label="закрыть редактор карточек" type="button" class="popup__close-btn button"></button>
-      <form name="edit-profile" class="popup__form popup__form_el_card">
+      <form name="edit-profile" class="popup__form popup__form_el_card" novalidate>
         <h2 class="popup__form-title">Новое место</h2>
-        <input name="place-name" type="text" placeholder="Название" required class="popup__form-item popup__form-item_el_place-name">
-        <input name="place-link" type="text" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_place-link">
+        <input id="place-name" name="place-name" type="text" placeholder="Название" required class="popup__form-item popup__form-item_el_place-name" minlength="2" maxlength="30">
+        <span class="place-name-error popup__form-error">Вы пропустили это поле.</span>
+        <input id="place-link" name="place-link" type="url" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_place-link">
+        <span class="place-link-error popup__form-error">Введите адрес сайта.</span>
         <button aria-label="Создать новую карточку" type="submit" class="popup__save-button">Создать</button>
       </form>
     </div>
@@ -69,6 +73,8 @@
     </div>
   </div>
   <script src="./scripts/cards.js"></script>
+  <script src="./scripts/form.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
