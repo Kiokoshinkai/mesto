@@ -4,6 +4,8 @@ const profileElement = contentElement.querySelector('.profile');
 const profileName = profileElement.querySelector('.profile__name');
 const profileStatus = profileElement.querySelector('.profile__status');
 //попап
+const popup = document.querySelector('.popup');
+const popups = document.querySelectorAll('.popup');
 const profileFormPopup = document.querySelector('.popup_place_profile');
 const placeFormPopup = document.querySelector('.popup_place_card');
 const imageZoomPopup = document.querySelector('.popup_place_image');
@@ -107,6 +109,35 @@ cardButton.addEventListener('click', () => {
 closeButtons.forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
+});
+//обработчик закрытия по клику на оверлей всех попапов
+popups.forEach(overlay => {
+  overlay.closest('.popup');
+addEventListener('click', evt => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(overlay);
+    }
+  });
+});
+//обработчик наведения курсора на оверлей - форму
+popups.forEach(overlay => {
+  overlay.closest('.popup');
+  overlay.addEventListener('mouseover', evt => {
+    if (evt.target.classList.contains('popup_opened')) {
+      overlay.classList.add('popup_pointed');
+    } else {
+      overlay.classList.remove('popup_pointed');
+    }
+  });
+});
+//обработчик закрытия всех попавов на esc
+popups.forEach(overlay => {
+  overlay.closest('.popup');
+  document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      closePopup(overlay);
+    }
+  });
 });
 //слушатель на форму т.к отправляем данные формы на сервер
 profileForm.addEventListener('submit', handleProfileFormSubmit);
