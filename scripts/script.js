@@ -144,5 +144,5 @@ popups.forEach(overlay => {
   });
 });
 //слушатель на форму т.к отправляем данные формы на сервер
-profileForm.addEventListener('submit', handleProfileFormSubmit);
-placeForm.addEventListener('submit', handlePlaceFormSubmit);
+// profileForm.addEventListener('submit', handleProfileFormSubmit);
+// placeForm.addEventListener('submit', handlePlaceFormSubmit);

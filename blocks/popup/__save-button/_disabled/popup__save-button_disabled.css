@@ -5,7 +5,9 @@
   border-radius: 2px;
   opacity: 0.2;
   cursor: default;
-}
-.popup__save-button_disabled:hover {
-  opacity: 0.2;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
