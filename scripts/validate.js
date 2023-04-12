@@ -17,7 +17,7 @@ const hideInputError = (formElement, inputElement) => {
 //функция проверки на корректность введеных данных и применяет функции скрыть/показать ошибку
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);//второй аргумент сообщение об ошибке
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(formElement, inputElement);
   }
@@ -55,8 +55,8 @@ const setEventListeners = (formElement) => {
   toggleButtonState(inputList, buttonElement); //проверка при первой загрузки страницы
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      toggleButtonState(inputList, buttonElement); //проверка состяния кнопок при изменении символа
       checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement); //проверка состяния кнопок при изменении символа
     });
   });
 }
