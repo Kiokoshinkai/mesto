@@ -1,4 +1,4 @@
-const formData = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-item',
   submitButtonSelector: '.popup__save-button',

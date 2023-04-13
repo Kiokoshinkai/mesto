@@ -20,7 +20,7 @@ const formPlaceFieldLink = placeFormPopup.querySelector('.popup__form-item_el_pl
 const formErrors = document.querySelectorAll('.popup__form-error');
 const formInputs = document.querySelectorAll('.popup__form-item');
 //кнопки
-const submitButtons = document.querySelectorAll(formData.submitButtonSelector);
+const submitButtons = document.querySelectorAll(validationConfig.submitButtonSelector);
 const profileButton = profileElement.querySelector('.profile__edit-button');
 const cardButton = profileElement.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
@@ -32,51 +32,47 @@ const cardTemplate = contentElement.querySelector('.card-template').content;
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
+
 //функция закрытия попапа с аргументом для переиспользования
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
+
 //функция переноса данных профиля в поля формы профиля
-function getDataForProfileForm() {
+function fillProfileFormInputs() {
   formProfileFieldName.value = profileName.textContent;
   formProfileFieldStatus.value = profileStatus.textContent;
 }
+
 //функция обнуления данных формы Место
 function clearFormPlace() {
   formPlaceFieldPlace.value = '';
   formPlaceFieldLink.value = '';
 }
+
 //функция обнуления ошибок форм
 function clearFormError() {
   const errors = Array.from(formErrors);
   const inputs = Array.from(formInputs);
   errors.forEach((element) => {
-    element.classList.remove(formData.errorClass);
+    element.classList.remove(validationConfig.errorClass);
   });
   inputs.forEach((element) => {
-    element.classList.remove(formData.inputErrorClass);
+    element.classList.remove(validationConfig.inputErrorClass);
   });
 }
-//функция деактивации кнопки при повторном открытии форм
-function disabledButton() {
-  Array.from(submitButtons).forEach((element) => {
-    element.classList.add(formData.inactiveButtonClass);
-    element.classList.add(formData.inactiveButtonClass);
-  });
-}
+
 //функция перезаписывает данные профиля с полей ввода
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
 
-  Array.from(submitButtons).forEach((element) => {
-    if (!element.classList.contains(formData.inactiveButtonClass)) {//проверка исключает неверную работу 'Enter' при невалидном поле
-      profileName.textContent = formProfileFieldName.value;
-      profileStatus.textContent = formProfileFieldStatus.value;
-    }
-  });
+  profileName.textContent = formProfileFieldName.value;
+  profileStatus.textContent = formProfileFieldStatus.value;
+
   //нужно вызывать для пддержания логики закрытия попапа
   closePopup(profileFormPopup);
 }
+
 //функция добавления карточки
 function handlePlaceFormSubmit (evt) {
   evt.preventDefault();
@@ -85,12 +81,10 @@ function handlePlaceFormSubmit (evt) {
     name: formPlaceFieldPlace.value,
     link: formPlaceFieldLink.value
   };
+
   //добавляем карточку на переднюю позицю
-  Array.from(submitButtons).forEach((element) => {
-    if (!element.classList.contains(formData.inactiveButtonClass)) {//проверка исключает неверную работу 'Enter' при невалидном поле
-      cardsContainer.prepend(createCard(placeValueObject));
-    }
-  });
+  cardsContainer.prepend(createCard(placeValueObject));
+
   evt.target.reset();
   //нужно вызывать для пддержания логики закрытия попапа
   closePopup(placeFormPopup);
@@ -125,7 +119,7 @@ function createCard(cardInfo) {
 //функция перебирает все данные массива и добавляет карточки через функцию createCard
 function addAllCardsFromArray() {
   initialCards.forEach(cardInfo => {
-  cardsContainer.append(createCard(cardInfo));
+    cardsContainer.append(createCard(cardInfo));
   });
 }
 //вызов функции для добавления всех карточек из массива
@@ -134,50 +128,50 @@ addAllCardsFromArray();
 //вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
 profileButton.addEventListener('click', () => {
   openPopup(profileFormPopup);
-  getDataForProfileForm();//перенос данных профиля в форму
+  fillProfileFormInputs();//перенос данных профиля в форму
   clearFormError();//обнуление ошибок
-  disabledButton();//добавление класса неактивной кнопки
+  document.addEventListener('keydown', closePopupToEsc) //возможность закрытия на esc
+  disableButton(submitButtons[0], validationConfig);
 });
 cardButton.addEventListener('click', () => {
   openPopup(placeFormPopup);
-  clearFormPlace();//обнуление данных при открытии
   clearFormError();
-  disabledButton();
+  document.addEventListener('keydown', closePopupToEsc)
+  disableButton(submitButtons[1], validationConfig);
 });
+
+//функция закрытия на esc и удаление слушателя
+function closePopupToEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(profileFormPopup);
+    closePopup(placeFormPopup);
+  }
+  document.removeEventListener('keydown', closePopupToEsc);
+}
+
 //обработчик всех кнопок закрытия
 closeButtons.forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
 });
+
 //обработчик закрытия по клику на оверлей всех попапов
 popups.forEach(overlay => {
-  overlay.closest('.popup');
   overlay.addEventListener('mousedown', evt => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(overlay);
     }
   });
 });
+
 //обработчик наведения курсора на оверлей - форму
 popups.forEach(overlay => {
-  overlay.closest('.popup');
   overlay.addEventListener('mouseover', evt => {
-    if (evt.target.classList.contains('popup_opened')) {
-      overlay.classList.add('popup_pointed');
-    } else {
-      overlay.classList.remove('popup_pointed');
-    }
+    const isTargetOverlay = evt.target.classList.contains('popup_opened');
+    overlay.classList.toggle('popup_pointed', isTargetOverlay)
   });
 });
-//обработчик закрытия всех попавов на esc
-popups.forEach(overlay => {
-  overlay.closest('.popup');
-  document.addEventListener('keydown', evt => {
-    if (evt.key === 'Escape') {
-      closePopup(overlay);
-    }
-  });
-});
+
 //слушатель на форму т.к отправляем данные формы на сервер
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);

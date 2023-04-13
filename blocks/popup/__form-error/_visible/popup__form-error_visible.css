@@ -1,4 +1,3 @@
 .popup__form-error_visible {
-  margin-top: 5px;
-  display: block;
+  visibility: visible;
 }
