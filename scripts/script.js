@@ -20,7 +20,8 @@ const formPlaceFieldLink = placeFormPopup.querySelector('.popup__form-item_el_pl
 const formErrors = document.querySelectorAll('.popup__form-error');
 const formInputs = document.querySelectorAll('.popup__form-item');
 //кнопки
-const submitButtons = document.querySelectorAll(validationConfig.submitButtonSelector);
+const profileSubmitButton = profileFormPopup.querySelector('.popup__save-button_place_profile');
+const cardSubmitButton = placeFormPopup.querySelector('.popup__save-button_place_card');
 const profileButton = profileElement.querySelector('.profile__edit-button');
 const cardButton = profileElement.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
@@ -31,11 +32,13 @@ const cardTemplate = contentElement.querySelector('.card-template').content;
 //функция открытия попапа с аргументом для переиспользования
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupToEsc);
 }
 
 //функция закрытия попапа с аргументом для переиспользования
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupToEsc);
 }
 
 //функция переноса данных профиля в поля формы профиля
@@ -130,23 +133,20 @@ profileButton.addEventListener('click', () => {
   openPopup(profileFormPopup);
   fillProfileFormInputs();//перенос данных профиля в форму
   clearFormError();//обнуление ошибок
-  document.addEventListener('keydown', closePopupToEsc) //возможность закрытия на esc
-  disableButton(submitButtons[0], validationConfig);
+  disableButton(profileSubmitButton, validationConfig);
 });
 cardButton.addEventListener('click', () => {
   openPopup(placeFormPopup);
   clearFormError();
-  document.addEventListener('keydown', closePopupToEsc)
-  disableButton(submitButtons[1], validationConfig);
+  disableButton(cardSubmitButton, validationConfig);
 });
 
-//функция закрытия на esc и удаление слушателя
+//функция закрытия на esc
 function closePopupToEsc (evt) {
   if (evt.key === 'Escape') {
     closePopup(profileFormPopup);
     closePopup(placeFormPopup);
   }
-  document.removeEventListener('keydown', closePopupToEsc);
 }
 
 //обработчик всех кнопок закрытия

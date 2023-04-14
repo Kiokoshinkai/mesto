@@ -5,7 +5,7 @@
   font-weight: 400;
   max-width: 358px;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
   line-height: 1.21;
@@ -22,12 +22,9 @@
 .popup__form-item::-ms-input-placeholder {
   color: #000;
 }
-.popup__form-item:nth-child(2) {
-  margin-top: 0;
-}
 .popup__form-item:focus {
   outline: 1px solid #000;
-  outline-offset: 3px;
+  outline-offset: 1px;
   border-radius: 2px;
 }
 @media screen and (max-width: 530px) {
