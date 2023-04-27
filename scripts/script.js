@@ -136,12 +136,14 @@ profileButton.addEventListener('click', () => {
   openPopup(profileFormPopup);
   fillProfileFormInputs();//перенос данных профиля в форму
   clearFormError();//обнуление ошибок
-  disableButton(profileSubmitButton, validationConfig);
+  profileValidator.enableValidation();
+  // disableButton(profileSubmitButton, validationConfig);
 });
 cardButton.addEventListener('click', () => {
   openPopup(placeFormPopup);
   clearFormError();
-  disableButton(cardSubmitButton, validationConfig);
+  cardValidator.enableValidation();
+  // disableButton(cardSubmitButton, validationConfig);
 });
 
 //функция закрытия на esc
