@@ -25,3 +25,5 @@ const initialCards = [
     link: './images/element_baikal.jpg'
   }
 ];
+
+export {initialCards};

@@ -1,3 +1,7 @@
+import {Card, renderElements} from './card.js';
+import {FormValidator} from './formValidator.js';
+import {validationConfig} from './validationConfig.js';
+
 //получить доступ к элементам, профиль
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
@@ -86,7 +90,6 @@ function handlePlaceFormSubmit (evt) {
   };
 
   //добавляем карточку на переднюю позицю через класс
-  // cardsContainer.prepend(createCard(placeValueObject));
   const card = new Card(placeValueObject, '.card-template');
   const cardElement = card.generateCard();
   cardsContainer.prepend(cardElement);
@@ -95,41 +98,6 @@ function handlePlaceFormSubmit (evt) {
   //нужно вызывать для пддержания логики закрытия попапа
   closePopup(placeFormPopup);
 }
-
-//функция клонирует один элемент(карточку) и заносит в него данные из массива, добавляет карточку первым элементом
-// function createCard(cardInfo) {
-//   const templateClone = cardTemplate.querySelector('.card').cloneNode(true);
-//   const cardImageClone = templateClone.querySelector('.card__image');
-//   cardImageClone.src = cardInfo.link;
-//   cardImageClone.alt = cardInfo.name;
-//   templateClone.querySelector('.card__title').textContent = cardInfo.name;
-//   //обработчик черных сердец
-//   templateClone.querySelector('.card__like').addEventListener('click', (evt) => {
-//     evt.target.classList.toggle('card__like_active');
-//     });
-//   //удаление карточек
-//   templateClone.querySelector('.card__trash').addEventListener('click', (evt) => {
-//     evt.target.closest('.card').remove();
-//     });
-//   //обработка клика по картинке
-//   cardImageClone.addEventListener('click', () => {
-//     placeImage.src = cardInfo.link;
-//     placeImage.alt = cardInfo.name;
-//     popupFigcaption.textContent = cardInfo.name;
-//     openPopup(imageZoomPopup)
-//   });
-
-//   return templateClone;
-// }
-
-//функция перебирает все данные массива и добавляет карточки через функцию createCard
-// function addAllCardsFromArray() {
-//   initialCards.forEach(cardInfo => {
-//     cardsContainer.append(createCard(cardInfo));
-//   });
-// }
-//вызов функции для добавления всех карточек из массива
-// addAllCardsFromArray();
 
 //вызов функции по нажатию на кнопку (открыть/закрыть редактор профиля, добавить место)
 profileButton.addEventListener('click', () => {
@@ -182,3 +150,12 @@ popups.forEach(overlay => {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
+renderElements();
+
+const profileValidator = new FormValidator(validationConfig, profileForm);
+const cardValidator = new FormValidator(validationConfig, placeForm);
+
+profileValidator.enableValidation();
+cardValidator.enableValidation();
+
+export {imageZoomPopup, cardsContainer, placeImage, popupFigcaption, openPopup};

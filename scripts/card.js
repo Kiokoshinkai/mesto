@@ -1,3 +1,6 @@
+import {initialCards} from './cardsConfig.js';
+import {imageZoomPopup, cardsContainer, placeImage, popupFigcaption, openPopup} from './script.js';
+
 //класс добавления карточки
 class Card {
   constructor(data, templateSelector) {//конструктор принимает данные карточек и темплейт селектор
@@ -54,6 +57,4 @@ const renderElements = () => {
   });
 };
 
-renderElements();
-
-
+export {Card, renderElements};
