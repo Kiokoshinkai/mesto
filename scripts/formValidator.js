@@ -17,6 +17,18 @@ class FormValidator {
     errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
   }
+//очистка ошибок форм
+  _clearFormError() {
+    const errors = Array.from(this._formElement.querySelectorAll('.popup__form-error'));
+    const inputs = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    errors.forEach((element) => {
+      element.classList.remove(this._config.errorClass);
+    });
+    inputs.forEach((element) => {
+      element.classList.remove(this._config.inputErrorClass);
+    });
+  }
+
 //проверка валидности
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
@@ -32,27 +44,27 @@ class FormValidator {
     });
   }
 //отключение кнопки
-  _disableButton(buttonElement) {
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(this._config.inactiveButtonClass);
+  _disableButton() {
+    this.buttonElement.setAttribute('disabled', true);
+    this.buttonElement.classList.add(this._config.inactiveButtonClass);
   }
 //включение кнопки
-  _enableButton(buttonElement) {
-    buttonElement.removeAttribute('disabled');
-    buttonElement.classList.remove(this._config.inactiveButtonClass);
+  _enableButton() {
+    this.buttonElement.removeAttribute('disabled');
+    this.buttonElement.classList.remove(this._config.inactiveButtonClass);
   }
 //слушатели
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-    this._disableButton(buttonElement);
-    inputList.forEach((inputElement) => {
+    this.inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    this.buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
+    this._disableButton(this.buttonElement);
+    this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        if (this._hasInvalidInput(inputList)) {
-          this._disableButton(buttonElement);
+        if (this._hasInvalidInput(this.inputList)) {
+          this._disableButton(this.buttonElement);
         } else {
-          this._enableButton(buttonElement);
+          this._enableButton(this.buttonElement);
         }
       });
     });
@@ -62,10 +74,8 @@ class FormValidator {
   }
 //включить валидацию
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._config.formSelector));
-    formList.forEach((formElement) => {
-      this._setEventListeners(formElement);
-    });
+    this._setEventListeners(this._formElement);
+    this._clearFormError();
   }
 }
 

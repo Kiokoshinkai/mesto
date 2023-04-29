@@ -1,5 +1,4 @@
-import {initialCards} from './cardsConfig.js';
-import {imageZoomPopup, cardsContainer, placeImage, popupFigcaption, openPopup} from './script.js';
+import {imageZoomPopup, placeImage, popupFigcaption, openPopup} from './script.js';
 
 //класс добавления карточки
 class Card {
@@ -8,6 +7,7 @@ class Card {
     this._name = data.name;
     this._link = data.link;
   }
+
 //клон темплейта
   _getTemplate() {
     const cardElement = document
@@ -25,10 +25,10 @@ class Card {
       });
 
     this._element.querySelector('.card__trash').addEventListener('click', (evt) => {
-      evt.target.closest('.card').remove();
+      this._element.remove();
       });
 
-    this._element.querySelector('.card__image').addEventListener('click', () => {
+    this._img.addEventListener('click', () => {
       placeImage.src = this._link;
       placeImage.alt = this._name;
       popupFigcaption.textContent = this._name;
@@ -38,23 +38,15 @@ class Card {
 //генерация готовой карты
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
+    this._img = this._element.querySelector('.card__image');
 
     this._element.querySelector('.card__title').textContent = this._name;
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._name;
+    this._img.src = this._link;
+    this._img.alt = this._name;
 
+    this._setEventListeners();
     return this._element;
   }
 }
-//рендер карты из массива с данными
-const renderElements = () => {
-  initialCards.forEach((item) => {
-    const card = new Card(item, '.card-template');
 
-    const cardElement = card.generateCard();
-    cardsContainer.append(cardElement);
-  });
-};
-
-export {Card, renderElements};
+export {Card};

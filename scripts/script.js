@@ -1,6 +1,7 @@
-import {Card, renderElements} from './card.js';
+import {Card} from './card.js';
 import {FormValidator} from './formValidator.js';
 import {validationConfig} from './validationConfig.js';
+import {initialCards} from './cardsConfig.js';
 
 //получить доступ к элементам, профиль
 const contentElement = document.querySelector('.content');
@@ -57,18 +58,6 @@ function clearFormPlace() {
   formPlaceFieldLink.value = '';
 }
 
-//функция обнуления ошибок форм
-function clearFormError() {
-  const errors = Array.from(formErrors);
-  const inputs = Array.from(formInputs);
-  errors.forEach((element) => {
-    element.classList.remove(validationConfig.errorClass);
-  });
-  inputs.forEach((element) => {
-    element.classList.remove(validationConfig.inputErrorClass);
-  });
-}
-
 //функция перезаписывает данные профиля с полей ввода
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
@@ -90,9 +79,7 @@ function handlePlaceFormSubmit (evt) {
   };
 
   //добавляем карточку на переднюю позицю через класс
-  const card = new Card(placeValueObject, '.card-template');
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  renderElements(placeValueObject, cardsContainer);
 
   evt.target.reset();
   //нужно вызывать для пддержания логики закрытия попапа
@@ -103,13 +90,13 @@ function handlePlaceFormSubmit (evt) {
 profileButton.addEventListener('click', () => {
   openPopup(profileFormPopup);
   fillProfileFormInputs();//перенос данных профиля в форму
-  clearFormError();//обнуление ошибок
+  // clearFormError();//обнуление ошибок
   profileValidator.enableValidation();
   // disableButton(profileSubmitButton, validationConfig);
 });
 cardButton.addEventListener('click', () => {
   openPopup(placeFormPopup);
-  clearFormError();
+  // clearFormError();
   cardValidator.enableValidation();
   // disableButton(cardSubmitButton, validationConfig);
 });
@@ -150,7 +137,18 @@ popups.forEach(overlay => {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
-renderElements();
+
+//рендер карты из массива с данными
+function renderElements(item, cards) {
+  const card = new Card(item, '.card-template');
+
+  const cardElement = card.generateCard();
+  cards.prepend(cardElement);
+}
+//отрисовка карточек из массива
+initialCards.forEach(item => {
+  renderElements(item, cardsContainer);
+});
 
 const profileValidator = new FormValidator(validationConfig, profileForm);
 const cardValidator = new FormValidator(validationConfig, placeForm);
@@ -158,4 +156,4 @@ const cardValidator = new FormValidator(validationConfig, placeForm);
 profileValidator.enableValidation();
 cardValidator.enableValidation();
 
-export {imageZoomPopup, cardsContainer, placeImage, popupFigcaption, openPopup};
+export {imageZoomPopup, placeImage, popupFigcaption, openPopup};

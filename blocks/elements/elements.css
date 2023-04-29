@@ -1,6 +1,6 @@
 .elements {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(282px, 282px));
   gap: 20px 17px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -8,7 +8,7 @@
 }
 @media screen and (max-width: 1050px) {
     .elements {
-        grid-template-columns: repeat(auto-fit, minmax(371px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(371px, 371px));
         gap: 15px 10px;
       }
 }
