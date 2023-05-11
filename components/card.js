@@ -1,4 +1,5 @@
-import {imageZoomPopup, placeImage, popupFigcaption, openPopup} from './script.js';
+import {imageZoomPopup, placeImage, popupFigcaption} from '../utils/constants.js';
+import {openPopup} from '../pages/index.js';
 
 //класс добавления карточки
 class Card {
@@ -49,4 +50,4 @@ class Card {
   }
 }
 
-export {Card};
+export default Card;
