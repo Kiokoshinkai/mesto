@@ -1,12 +1,10 @@
-import {imageZoomPopup, placeImage, popupFigcaption} from '../utils/constants.js';
-import {openPopup} from '../pages/index.js';
-
 //класс добавления карточки
-class Card {
-  constructor(data, templateSelector) {//конструктор принимает данные карточек и темплейт селектор
+export default class Card {
+  constructor(data, templateSelector, { handleCardClick }) {//конструктор принимает данные карточек и темплейт селектор
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
 //клон темплейта
@@ -28,13 +26,8 @@ class Card {
     this._element.querySelector('.card__trash').addEventListener('click', (evt) => {
       this._element.remove();
       });
-
-    this._img.addEventListener('click', () => {
-      placeImage.src = this._link;
-      placeImage.alt = this._name;
-      popupFigcaption.textContent = this._name;
-      openPopup(imageZoomPopup);
-    });
+    //изображению добавляется слушатель для срабатывания функции handleCardClick
+    this._img.addEventListener('click', this._handleCardClick);
   }
 //генерация готовой карты
   generateCard() {
@@ -49,5 +42,3 @@ class Card {
     return this._element;
   }
 }
-
-export default Card;

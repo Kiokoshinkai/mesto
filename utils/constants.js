@@ -38,25 +38,19 @@ export const validationConfig = {
 //получить доступ к элементам, профиль
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
-export const profileName = profileElement.querySelector('.profile__name');
-export const profileStatus = profileElement.querySelector('.profile__status');
 //попап
 export const popups = document.querySelectorAll('.popup');
-export const profileFormPopup = document.querySelector('.popup_place_profile');
-export const placeFormPopup = document.querySelector('.popup_place_card');
-export const imageZoomPopup = document.querySelector('.popup_place_image');
+const profileFormPopup = document.querySelector('.popup_place_profile');
+const placeFormPopup = document.querySelector('.popup_place_card');
+const imageZoomPopup = document.querySelector('.popup_place_image');
 export const placeImage = imageZoomPopup.querySelector('.popup__image');
-export const popupFigcaption = imageZoomPopup.querySelector('.popup__figcaption');
 export const profileForm = profileFormPopup.querySelector('.popup__form_el_profile');
 export const placeForm = placeFormPopup.querySelector('.popup__form_el_card');
 //поля форм
 export const formProfileFieldName = profileFormPopup.querySelector('.popup__form-item_el_name');
 export const formProfileFieldStatus = profileFormPopup.querySelector('.popup__form-item_el_status');
-export const formPlaceFieldPlace = placeFormPopup.querySelector('.popup__form-item_el_place-name');
-export const formPlaceFieldLink = placeFormPopup.querySelector('.popup__form-item_el_place-link');
 //кнопки
 export const profileButton = profileElement.querySelector('.profile__edit-button');
 export const cardButton = profileElement.querySelector('.profile__add-button');
-export const closeButtons = document.querySelectorAll('.popup__close-btn');
-//получить доступ к темплейт элементу карточки
+
 export const cardsContainer = '.elements';
