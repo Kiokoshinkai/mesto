@@ -1,28 +1,35 @@
 //массив для карточек
+const arkhyz = new URL('../images/element_arkhyz.jpg', import.meta.url);
+const chelyabinsk = new URL('../images/element_chelyabinsk-oblast.jpg', import.meta.url);
+const ivanovo = new URL('../images/element_ivanovo.jpg', import.meta.url);
+const kamchatka = new URL('../images/element_kamchatka.jpg', import.meta.url);
+const kholmogorsky = new URL('../images/element_kholmogorsky-rayon.jpg', import.meta.url);
+const baikal = new URL('../images/element_baikal.jpg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Архыз',
-    link: './images/element_arkhyz.jpg'
+    link: arkhyz
   },
   {
     name: 'Челябинская область',
-    link: './images/element_chelyabinsk-oblast.jpg'
+    link: chelyabinsk
   },
   {
     name: 'Иваново',
-    link: './images/element_ivanovo.jpg'
+    link: ivanovo
   },
   {
     name: 'Камчатка',
-    link: './images/element_kamchatka.jpg'
+    link: kamchatka
   },
   {
     name: 'Холмогорский район',
-    link: './images/element_kholmogorsky-rayon.jpg'
+    link: kholmogorsky
   },
   {
     name: 'Байкал',
-    link: './images/element_baikal.jpg'
+    link: baikal
   }
 ];
 //конфиг для валидации
