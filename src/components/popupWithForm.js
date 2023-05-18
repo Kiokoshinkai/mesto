@@ -1,4 +1,4 @@
-import Popup from "./popup.js";
+import Popup from "./Popup.js";
 
 //попапы профиля и место
 export default class PopupWithForm extends Popup {

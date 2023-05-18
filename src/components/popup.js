@@ -1,5 +1,3 @@
-import { popups } from "../utils/constants.js";
-
 //управление попапами
 export default class Popup {
   constructor (popupSelector) {
@@ -31,11 +29,9 @@ export default class Popup {
       }
     });
     //обработчик наведения курсора на оверлей - форму
-    popups.forEach(overlay => {
-      overlay.addEventListener('mouseover', evt => {
-        const isTargetOverlay = evt.target.classList.contains('popup_opened');
-        overlay.classList.toggle('popup_pointed', isTargetOverlay)
-      });
+    this._popupElement.addEventListener('mouseover', evt => {
+      const isTargetOverlay = evt.target.classList.contains('popup_opened');
+      this._popupElement.classList.toggle('popup_pointed', isTargetOverlay);
     });
   }
 }

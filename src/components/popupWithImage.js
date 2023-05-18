@@ -1,4 +1,4 @@
-import Popup from "./popup.js";
+import Popup from "./Popup.js";
 
 //попап с картинкой
 export default class PopupWithImage extends Popup {

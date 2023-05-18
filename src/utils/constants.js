@@ -46,7 +46,6 @@ export const validationConfig = {
 const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
 //попап
-export const popups = document.querySelectorAll('.popup');
 const profileFormPopup = document.querySelector('.popup_place_profile');
 const placeFormPopup = document.querySelector('.popup_place_card');
 const imageZoomPopup = document.querySelector('.popup_place_image');
