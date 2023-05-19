@@ -43,7 +43,7 @@ export const validationConfig = {
 }
 
 //получить доступ к элементам, профиль
-const contentElement = document.querySelector('.content');
+export const contentElement = document.querySelector('.content');
 const profileElement = contentElement.querySelector('.profile');
 //попап
 const profileFormPopup = document.querySelector('.popup_place_profile');
