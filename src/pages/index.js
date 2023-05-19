@@ -8,7 +8,7 @@ import UserInfo from "../components/UserInfo.js";
 import {validationConfig} from '../utils/constants.js';
 import {initialCards} from '../utils/constants.js';
 import {profileForm, placeForm, formProfileFieldName, formProfileFieldStatus,
-        profileButton, cardButton, cardsContainer, contentElement} from '../utils/constants.js';
+        profileButton, cardButton, cardsContainer} from '../utils/constants.js';
 
 //функция создания новой карточки
 const createNewCard = (data) => {
@@ -43,7 +43,6 @@ imagePopup.setEventListeners();
 //редактор профиля
 const profilePopupForm = new PopupWithForm('.popup_place_profile', (data) =>{
   profileInfo.setUserInfo(data);
-  profileValidator.enableValidation();
 });
 profileButton.addEventListener('click', () => {
   profilePopupForm.open();
@@ -53,9 +52,7 @@ profilePopupForm.setEventListeners();
 
 //создание новых карточек
 const placePopupForm = new PopupWithForm('.popup_place_card', (data) =>{
-  const newCard = createNewCard(data);//вызов функции создание карточки
-  contentElement.querySelector(cardsContainer).prepend(newCard);
-  cardValidator.enableValidation();
+  cardList.addItem(createNewCard(data));//вызов функции создание карточки
 });
 cardButton.addEventListener('click', () => {
   placePopupForm.open()
@@ -65,6 +62,8 @@ placePopupForm.setEventListeners();
 //класс валидации формы
 const profileValidator = new FormValidator(validationConfig, profileForm);
 const cardValidator = new FormValidator(validationConfig, placeForm);
+
 //включение валидации
 profileValidator.enableValidation();
 cardValidator.enableValidation();
+
