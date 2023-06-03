@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto</title>
 </head>
 <body class="page">
   <header class="header page__header">
-    <img src="./images/logo.svg" alt="Логотип Место Россия" class="logo">
+    <img src='<%=require("./images/logo.svg")%>' alt="Логотип Место Россия" class="logo">
   </header>
   <main class="content page__content">
     <section class="profile">
-      <img src="#" alt="фото пользователя" class="profile__avatar">
+      <div class="profile__avatar-btn">
+        <img src="#" alt="фото пользователя" class="profile__avatar">
+      </div>
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <p class="profile__status"></p>
@@ -66,6 +68,17 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_place_avatar">
+    <div class="popup__container">
+      <button aria-label="закрыть редактор аватара" type="button" class="popup__close-btn button"></button>
+      <form name="change-avatar" class="popup__form popup__form_el_avatar" novalidate>
+        <h2 class="popup__form-title">Обновить аватар</h2>
+        <input id="place-avatar" name="link" type="url" placeholder="Ссылка на картинку" required class="popup__form-item popup__form-item_el_avatar-link">
+        <span class="place-avatar-error popup__form-error">Введите адрес сайта.</span>
+        <button aria-label="Изменить аватар" type="submit" class="popup__save-button popup__save-button_place_avatar">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_place_trash">
     <div class="popup__container">
       <button aria-label="закрыть удаление карточки" type="button" class="popup__close-btn button"></button>
@@ -84,6 +97,6 @@
       </figure>
     </div>
   </div>
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>

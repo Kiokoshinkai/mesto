@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -7,18 +7,19 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithConfirmation from '../components/popupWithConfirmation.js';
 import {validationConfig} from '../utils/constants.js';
-import {initialCards} from '../utils/constants.js';
-import {profileForm, placeForm, formProfileFieldName, formProfileFieldStatus,
-        profileButton, cardButton, cardsContainer} from '../utils/constants.js';
+import {profileForm, placeForm, avatarForm, formProfileFieldName, formProfileFieldStatus,
+        profileButton, cardButton, avatarButton, cardsContainer, profileAvatar, profileName,
+        profileStatus} from '../utils/constants.js';
 import Api from '../components/Api.js';
 
+//вызов класса апи
 const api = new Api('30890c08-2ed4-44b3-b5d6-ec734b5a14d4');
 
 //загрузить данные пользователя с сервера
 api.getUser().then(info => {
-  document.querySelector('.profile__avatar').src = info.avatar
-  document.querySelector('.profile__name').textContent = info.name
-  document.querySelector('.profile__status').textContent = info.about
+  profileAvatar.src = info.avatar
+  profileName.textContent = info.name
+  profileStatus.textContent = info.about
   userId = info._id;
 })
 .catch((err) => {
@@ -37,7 +38,7 @@ api.getCards().then(data => {
     console.log(err);
   });
 
-let userId = null;
+let userId = null; //для прокидывания нашего айдишника в класс карточки
 
 //функция создания новой карточки
 const createNewCard = (data) => {
@@ -47,7 +48,7 @@ const createNewCard = (data) => {
   },
   handleTrashClick: () => {
     deleteConfirmationPopup.open(); //открываем подтверждение удаления конкретной карты
-    deleteConfirmationPopup.setSubmitAction(() => {
+    deleteConfirmationPopup.setSubmitAction(() => {//прокидываем данную функцию в класс попапа корзины
       api.deleteCard(data._id)
       .then(() => {
         card.deleteCard();
@@ -83,7 +84,6 @@ const createNewCard = (data) => {
     }
   }
 });
-
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -110,9 +110,10 @@ const imagePopup = new PopupWithImage('.popup_place_image');
 imagePopup.setEventListeners();
 
 //редактор профиля
-const profilePopupForm = new PopupWithForm('.popup_place_profile', (info) =>{
+const profilePopupForm = new PopupWithForm('.popup_place_profile', (info) => {
   profileInfo.setUserInfo(info);
-  api.editProfile(profilePopupForm.getInputValues()) //обновить данные пользователя
+  profilePopupForm.loadingText(true, 'Сохранение...'); //функция смены кнопки на сохранение...
+  api.editProfile(info) //обновить данные пользователя
   .catch((err) => {
     console.log(err);
   });
@@ -124,8 +125,9 @@ profileButton.addEventListener('click', () => {
 profilePopupForm.setEventListeners();
 
 //создание новых карточек
-const placePopupForm = new PopupWithForm('.popup_place_card', () =>{
-  api.addCard(placePopupForm.getInputValues())
+const placePopupForm = new PopupWithForm('.popup_place_card', (info) =>{
+  placePopupForm.loadingText(true, 'Сохранение...'); //функция смены кнопки на сохранение...
+  api.addCard(info)
   .then(res => {
     cardList.addItem(createNewCard(res));//вызов функции создание карточки
   })
@@ -138,11 +140,28 @@ cardButton.addEventListener('click', () => {
 });
 placePopupForm.setEventListeners();
 
+//редактор аватара
+const avatarPopupForm = new PopupWithForm('.popup_place_avatar', (info) => {
+  avatarPopupForm.loadingText(true, 'Сохранение...'); //функция смены кнопки на сохранение...
+  api.editAvatar(info.link) //вызов экземпляра класса апи для функции смены аватара
+  .then(res => {
+    profileAvatar.src = res.avatar
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+avatarButton.addEventListener('click', () => {
+  avatarPopupForm.open();
+});
+avatarPopupForm.setEventListeners();
+
 //класс валидации формы
 const profileValidator = new FormValidator(validationConfig, profileForm);
 const cardValidator = new FormValidator(validationConfig, placeForm);
+const avatarValidator = new FormValidator(validationConfig, avatarForm);
 
 //включение валидации
 profileValidator.enableValidation();
 cardValidator.enableValidation();
-
+avatarValidator.enableValidation();

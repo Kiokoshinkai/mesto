@@ -106,14 +106,14 @@ export default class Api {
     })
   }
 
-  editAvatar(input) {
+  editAvatar(data) {
     return fetch(this._user + `/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(input)
+      body: JSON.stringify({avatar: data})
     })
     .then(this._resStatus)
     .catch((err) => {
