@@ -1,19 +1,19 @@
 //сбор информации пользователя
 export default class UserInfo {
-  constructor ({ name, status }) {
+  constructor ({ name, about }) {
     this._name = document.querySelector(name);
-    this._status = document.querySelector(status);
+    this._about = document.querySelector(about);
   }
 
   getUserInfo() {
     return {
       name: this._name.textContent,
-      status: this._status.textContent
+      about: this._about.textContent
     }
   }
 
   setUserInfo(info) {
     this._name.textContent = info.name;
-    this._status.textContent = info.status;
+    this._about.textContent = info.about;
   }
 }
