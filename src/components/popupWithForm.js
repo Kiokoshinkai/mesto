@@ -34,7 +34,7 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
-  handleButtonText(text) {
+  setSubmitButtonText(text) {
     this._submitButton.textContent = text;
   }
 }

@@ -11,7 +11,6 @@ export const validationConfig = {
 //получить доступ к элементам, профиль
 const contentElement = document.querySelector(".content");
 const profileElement = contentElement.querySelector(".profile");
-export const profileAvatar = document.querySelector(".profile__avatar");
 //попап
 const profileFormPopup = document.querySelector(".popup_place_profile");
 const placeFormPopup = document.querySelector(".popup_place_card");

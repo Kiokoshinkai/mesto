@@ -17,7 +17,6 @@ import {
   cardButton,
   avatarButton,
   cardsContainerSelector,
-  profileAvatar,
   token,
   url,
 } from "../utils/constants.js";
@@ -44,7 +43,7 @@ const profileInfo = new UserInfo({
 
 //класс редактора профиля
 const profilePopupForm = new PopupWithForm(".popup_place_profile", (info) => {
-  profilePopupForm.handleButtonText("Сохранение..."); //функция смены кнопки на сохранение...
+  profilePopupForm.setSubmitButtonText("Сохранение..."); //функция смены кнопки на сохранение...
   api
     .editProfile(info) //обновить данные пользователя
     .then((res) => {
@@ -57,13 +56,13 @@ const profilePopupForm = new PopupWithForm(".popup_place_profile", (info) => {
       console.log(err);
     })
     .finally(() => {
-      profilePopupForm.handleButtonText("Сохранить");
+      profilePopupForm.setSubmitButtonText("Сохранить");
     });
 });
 
 //класс создания новых карточек
 const placePopupForm = new PopupWithForm(".popup_place_card", (info) => {
-  placePopupForm.handleButtonText("Сохранение..."); //функция смены кнопки на сохранение...
+  placePopupForm.setSubmitButtonText("Сохранение..."); //функция смены кнопки на сохранение...
   api
     .addCard(info)
     .then((res) => {
@@ -76,17 +75,17 @@ const placePopupForm = new PopupWithForm(".popup_place_card", (info) => {
       console.log(err);
     })
     .finally(() => {
-      placePopupForm.handleButtonText("Создать");
+      placePopupForm.setSubmitButtonText("Создать");
     });
 });
 
 //класс редактора аватара
 const avatarPopupForm = new PopupWithForm(".popup_place_avatar", (info) => {
-  avatarPopupForm.handleButtonText("Сохранение..."); //функция смены кнопки на сохранение...
+  avatarPopupForm.setSubmitButtonText("Сохранение..."); //функция смены кнопки на сохранение...
   api
     .editAvatar(info.link) //вызов экземпляра класса апи для функции смены аватара
     .then((res) => {
-      profileAvatar.src = res.avatar;
+      profileInfo.setAvatarInfo(res.avatar);
     })
     .then(() => {
       avatarPopupForm.close();
@@ -95,7 +94,7 @@ const avatarPopupForm = new PopupWithForm(".popup_place_avatar", (info) => {
       console.log(err);
     })
     .finally(() => {
-      avatarPopupForm.handleButtonText("Сохранить");
+      avatarPopupForm.setSubmitButtonText("Сохранить");
     });
 });
 
@@ -171,7 +170,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
   .then(([user, cards]) => {
     userId = user._id; //передаем свой id в переменную
     profileInfo.setUserInfo(user); //данные пользователя устанавливаются через класс UserInfo
-    profileInfo.setAvatarInfo(user);
+    profileInfo.setAvatarInfo(user.avatar);
     cardsSection.renderItems({ renderedItems: cards }); //карточки загружаются через класс Section
   })
   .catch((err) => {

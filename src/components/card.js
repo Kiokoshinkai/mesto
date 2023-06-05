@@ -74,7 +74,6 @@ export default class Card {
   //установка слушателей для лайк, корзины, попапа картинки
   _setEventListeners() {
     this._buttonLike.addEventListener("click", this._handleLike);
-    this._setInitialLikeState();
 
     this._trash.addEventListener("click", this._handleTrashClick);
 
@@ -94,6 +93,7 @@ export default class Card {
     this._img.src = this._link;
     this._img.alt = this._name;
 
+    this._setInitialLikeState();
     this._checkTrashButtonVisibility();
     this._renderLikes();
 
